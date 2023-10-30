@@ -2,9 +2,12 @@ import java.lang.management;
 
 public class Main {
     public static void main(String[] args) {
-        // Two cases: small array (10 elements) and big array (100'000 elements)
+        int[] arraySizes = {10, 1000000};
+        // 4 cases: list of primitives, list of strings(object), list of big objects, list of arrays of primitives.
     }
 
 
-    public execute()
+    public void execute() {
+
+    }
 }
