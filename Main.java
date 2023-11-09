@@ -7,7 +7,7 @@ public class Main {
     private static ThreadMXBean bean = ManagementFactory.getThreadMXBean();
     
     public static void main(String[] args) {
-        int[] arraySizes = {10, 500};
+        int[] arraySizes = {10, 200};
 
         // Initialize the random number generator
         Random random = new Random();
