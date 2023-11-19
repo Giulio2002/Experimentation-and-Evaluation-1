@@ -1,3 +1,5 @@
+package ch.usi.experimentation.assignment1;
+
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.Random;

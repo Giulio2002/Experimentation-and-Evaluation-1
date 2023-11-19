@@ -1,4 +1,4 @@
-//package exp01;
+package ch.usi.experimentation.assignment1;
 
 interface Sorter<T extends Comparable<T>> {
 	

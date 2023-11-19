@@ -1,4 +1,4 @@
-//package exp01;
+package ch.usi.experimentation.assignment1;
 
 public final class BubbleSortUntilNoChange<T extends Comparable<T>> implements Sorter<T> {
 	
