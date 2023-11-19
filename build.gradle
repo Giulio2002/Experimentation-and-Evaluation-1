@@ -26,9 +26,23 @@ allprojects {
         testImplementation(platform("org.junit:junit-bom:5.10.1"))
         testImplementation('org.junit.jupiter:junit-jupiter')
     }
+
 }
 
 subprojects {
     // plugin to run subprojects as applications
     apply plugin: 'application'
+    apply plugin: 'checkstyle'
+
+    checkstyle {
+        configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    }
+
+    checkstyleMain {
+        source = 'src/main/java'
+    }
+
+    checkstyleTest {
+        source = 'src/test/java'
+    }
 }
