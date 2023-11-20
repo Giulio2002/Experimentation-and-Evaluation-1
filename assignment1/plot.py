@@ -2,15 +2,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def five_number_summary(data):
-    """Print the five-number summary for the given data."""
-    summary = data.describe(percentiles=[.25, .5, .75])
-    print("Minimum:", summary['min'])
-    print("First Quartile:", summary['25%'])
-    print("Median:", summary['50%'])
-    print("Third Quartile:", summary['75%'])
-    print("Maximum:", summary['max'])
-
 def run():
     # Load data from CSV
     df = pd.read_csv('benchmark.csv')
@@ -42,17 +33,11 @@ def run():
     # Add a legend and adjust the layout
     g.add_legend()
     g.set_xticklabels(rotation=90)
-    plt.subplots_adjust(top=0.85)
+    plt.subplots_adjust(top=0.9)
     g.fig.suptitle('Sorting Algorithm Performance by Array Type and Initial State')
 
     # Display the plot
     plt.show()
-
-    # Print the five-number summary for each group
-    grouped = df.groupby(['type', 'algorithm', 'array'])
-    for name, group in grouped:
-        print(f"\nFive-number summary for {name}:")
-        five_number_summary(group['time'])
 
 if __name__ == "__main__":
     run()

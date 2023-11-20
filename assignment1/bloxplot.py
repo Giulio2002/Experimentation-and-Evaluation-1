@@ -32,6 +32,17 @@ def run(arrayType):
 
     plt.show()
 
+    # Printing Statistics
+    for size in df_filtered['size'].unique():
+        for algorithm in df_filtered['algorithm'].unique():
+            subset_stats = stats.loc[(size, algorithm)]
+            print(f"\nStatistics for {arrayType} array, Size: {size}, Algorithm: {algorithm}:")
+            print(f"Min: {subset_stats['min']:.2f}")
+            print(f"25th: {subset_stats['25%']:.2f}")
+            print(f"Median: {subset_stats['50%']:.2f}")
+            print(f"75th: {subset_stats['75%']:.2f}")
+            print(f"Max: {subset_stats['max']:.2f}")
+
 if __name__ == "__main__":
     run("sorted")
     run("random")
