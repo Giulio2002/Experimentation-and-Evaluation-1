@@ -48,3 +48,17 @@ following [template project](https://github.com/jghoman/gradle-subprojects).
 
 Code style consistency enforced with checkstyle plugin following 
 Google Java Style Guide [docs](https://checkstyle.sourceforge.io/google_style.html).
+
+## Plots
+
+### Overal speed becnhmark
+
+![alt text](plots/main_plot.png)
+
+### Box plots for each statistic
+
+![alt text](plots/random_blox_plot.png)
+
+![alt text](plots/reverse_blox_plot.png)
+
+![alt text](plots/sorted_blox_plot.png)
