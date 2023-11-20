@@ -42,7 +42,7 @@ def run():
     # Add a legend and adjust the layout
     g.add_legend()
     g.set_xticklabels(rotation=90)
-    plt.subplots_adjust(top=0.9)
+    plt.subplots_adjust(top=0.85)
     g.fig.suptitle('Sorting Algorithm Performance by Array Type and Initial State')
 
     # Display the plot
