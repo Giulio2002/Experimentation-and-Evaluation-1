@@ -105,20 +105,20 @@ public class Main {
       // Sort using BubbleSortPassPerItem and measure total time
       BubbleSortPassPerItem<T> sorterPassPerItem = new BubbleSortPassPerItem<>();
       totalTimePassPerItem += measureSortTime(sorterPassPerItem, arrayCopy.clone());
-      totalTimePassPerItemSorted += measureSortTime(sorterPassPerItem, sortedArray);
-      totalTimePassPerItemReverse += measureSortTime(sorterPassPerItem, reverseSortedArray);
+      totalTimePassPerItemSorted += measureSortTime(sorterPassPerItem, sortedArray.clone());
+      totalTimePassPerItemReverse += measureSortTime(sorterPassPerItem, reverseSortedArray.clone());
 
       // Sort using BubbleSortUntilNoChange and measure total time
       BubbleSortUntilNoChange<T> sorterUntilNoChange = new BubbleSortUntilNoChange<>();
       totalTimeUntilNoChange += measureSortTime(sorterUntilNoChange, arrayCopy.clone());
-      totalTimeUntilNoChangeSorted += measureSortTime(sorterUntilNoChange, sortedArray);
-      totalTimeUntilNoChangeReverse += measureSortTime(sorterUntilNoChange, reverseSortedArray);
+      totalTimeUntilNoChangeSorted += measureSortTime(sorterUntilNoChange, sortedArray.clone());
+      totalTimeUntilNoChangeReverse += measureSortTime(sorterUntilNoChange, reverseSortedArray.clone());
 
       // Sort using BubbleSortWhileNeeded and measure total time
       BubbleSortWhileNeeded<T> sorterWhileNeeded = new BubbleSortWhileNeeded<>();
       totalTimeWhileNeeded += measureSortTime(sorterWhileNeeded, arrayCopy.clone());
-      totalTimeWhileNeededSorted += measureSortTime(sorterWhileNeeded, sortedArray);
-      totalTimeWhileNeededReverse += measureSortTime(sorterWhileNeeded, reverseSortedArray);
+      totalTimeWhileNeededSorted += measureSortTime(sorterWhileNeeded, sortedArray.clone());
+      totalTimeWhileNeededReverse += measureSortTime(sorterWhileNeeded, reverseSortedArray.clone());
     }
 
     // Calculate the average time for each sort method
