@@ -12,6 +12,7 @@ public final class BubbleSortPassPerItem<T extends Comparable<T>> implements Sor
    * Negligent approach: always iterating n^2 times even if already sorted.
    * Using temp var to swap items.
    * Easy to implement, not efficient, not scalable.
+   * In-place algorithm.
    *
    * @param items The array to sort
    */

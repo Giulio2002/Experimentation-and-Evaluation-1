@@ -13,6 +13,7 @@ public final class BubbleSortUntilNoChange<T extends Comparable<T>> implements S
    * in the next iteration.
    * Possibly inefficient, not scalable.
    * Using temp var to swap items.
+   * In-place algorithm.
    *
    * @param items The array to sort
    */

@@ -12,6 +12,7 @@ public final class BubbleSortWhileNeeded<T extends Comparable<T>> implements Sor
    * Keeps maxIndex to avoid sorting already sorted items.
    * Possibly efficient, scalable.
    * Using temp var to swap items.
+   * In-place algorithm.
    *
    * @param items The array to sort
    */
