@@ -10,7 +10,7 @@ allprojects {
 
     // enforce java version to 21
     java {
-        sourceCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_20
     }
 
     // setup junit 5 BOM
