@@ -1,0 +1,22 @@
+#content {
+    text-align: center;
+    margin-top: 420px;
+    font-size: 30pt;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.fade {
+    opacity: 0;
+    transition: opacity 0s;
+}
+
+.fade-in {
+    opacity: 1;
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
