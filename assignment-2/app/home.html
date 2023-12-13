@@ -49,7 +49,7 @@
 
 <div class="container">
   <h2>Let's get to know each other 😊</h2>
-  <form id="get-to-know-form">
+  <div id="get-to-know-form">
     <div class="form-group">
       <label for="age">Age:</label>
       <input type="number" id="age" name="age" min="1" placeholder="Age">
@@ -73,9 +73,21 @@
       </select>
     </div>
 
-    <button type="submit">Let us begin!</button>
-  </form>
+    <button  onclick="redirect()">Let us begin!</button>
+  </div>
 </div>
+
+<script>
+  function redirect() {
+    let age = document.getElementById('age').value;
+    if (age === '') {
+      alert('Please enter your age');
+      return;
+    }
+    
+    window.location.href = `/survey?age=${document.getElementById('age').value}&use_glasses=${document.getElementById('glasses').value}&reading_impairment=${document.getElementById('impairment').value}&role=${document.getElementById('studyStatus').value}`;
+  }
+</script>
 
 </body>
 </html>
