@@ -76,7 +76,7 @@ app.post("/metrics", async (req, res) => {
 })
 
 
-app.listen(PORT, (error) => { 
+app.listen(process.env.PORT, (error) => { 
     if (!error)
         console.log("Server is Successfully Running, and App is listening on port " + PORT);
     else 

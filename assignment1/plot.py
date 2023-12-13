@@ -6,8 +6,8 @@ def run():
     # Load data from CSV
     df = pd.read_csv('benchmark.csv')
 
-    # Print the DataFrame to view its contents
-    print(df)
+    # Ensure 'size' column is numeric
+    df['size'] = pd.to_numeric(df['size'], errors='coerce')
 
     # Set the style and palette of the plot
     sns.set(style="ticks", context="talk")
@@ -32,7 +32,8 @@ def run():
 
     # Add a legend and adjust the layout
     g.add_legend()
-    g.set_xticklabels(rotation=90)
+
+    # Adjust the layout
     plt.subplots_adjust(top=0.9)
     g.fig.suptitle('Sorting Algorithm Performance by Array Type and Initial State')
 
