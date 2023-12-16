@@ -48,4 +48,3 @@ var rand = sfc32(seed[0], seed[1], seed[2], seed[3]);
 
 // Only one 32-bit component hash is needed for mulberry32.
 var rand = mulberry32(seed[0]);
-console.log(rand());

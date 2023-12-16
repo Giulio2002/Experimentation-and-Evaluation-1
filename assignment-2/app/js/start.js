@@ -1,7 +1,6 @@
 // load all the words in ../words.json with fetch
-var wordsPairs = [];
-const selectionWords = 33;
-const pauseInSecs = 3;
+const selectionWords = 29;
+const pauseInSecs = 1;
 const optionsCount = 4;
 var state = -1;
 
@@ -10,20 +9,36 @@ var wrongs = {}
 var startTime = 0;
 var questions = [];
 
-fetch('../words.json').then(response => response.json()).then(data => {
-    let words = data.commonWords;
-    // Pick at random 33 pairs of words (select 2 indicies) from the list of words, and for each generate a boolean whether it is camel case or not.
-    for (let i = 0; i < selectionWords*(optionsCount*optionsCount); i++) {
-        // [word1, word2, isCamelCase]
-        let pair = [];
-        let index1 = Math.floor(rand() * words.length);
-        let index2 = Math.floor(rand() * words.length);
-        pair.push(words[index1]);
-        pair.push(words[index2]);
-        pair.push(rand() < 0.5);
-        wordsPairs.push(pair);
+let wordsPerQuestion = 0;
+
+const WORDS_INCREMENT = 2; 
+const WORDS_INCREMENT_INTERVAL = 10;
+var words;
+var warmupCases = 4
+function getRandomPair() {
+    let pair = [];
+    let indexes = [];
+    let isCamelCase = rand() < 0.5;
+    let f = [];
+    for (let j = 0; j < wordsPerQuestion; j++) {
+        let index = Math.floor(rand() * words.length);
+        while (indexes.includes(index)) {
+            index = Math.floor(rand() * words.length);
+        }
+        indexes.push(index);
+        f.push(words[index]);
     }
+    
+    pair.push(f);
+    pair.push(isCamelCase);
+    return pair;
+}
+
+
+fetch('../words.json').then(response => response.json()).then(data => {
+    words = data.commonWords;
 });
+
 var displayMainText = document.getElementById('displayMainText');
 var displayText = document.getElementById('displayText');
 
@@ -40,13 +55,25 @@ let pushed = false;
 let counting = false;
 let correctWord = "";
 let optionsArray = "";
+
+function changeListRandomCharacter(word) {
+    // change one character in the word
+    let index = Math.floor(rand() * word.length);
+    let newChar = String.fromCharCode(Math.floor(rand() * 26) + 97);
+    word = word.slice(0, index) + newChar + word.slice(index + 1);
+    return word;
+
+}
 async function onKeyDownfunction(event) {
     if (counting) return;
     if (pushed) return;
     if (event.key !== 'Enter' && state === -1) {
         return
     }
-    if (state == -1) displayMainText.classList.remove('fade-in');
+    if (state !== -1 && event.key !== '1' && event.key !== '2' && event.key !== '3' && event.key !== '4') {
+        return;
+    }
+    if (state === -1) displayMainText.classList.remove('fade-in');
     if (state !== -1) {
         if (!didUserSelectCorrectly(event)) {
             wrongs[Number(event.key)] = true;
@@ -79,26 +106,35 @@ async function onKeyDownfunction(event) {
         }
     }
     displayText.innerHTML = pauseInSecs;
-    state++;
-    counting=true;
-    optionsArray = [];
-    let correctIndex = Math.floor(rand() * wordsPairs.length);
-    correctWord = wordsPairs[correctIndex];
-    while (seenWords[correctIndex]) {
-        correctIndex = Math.floor(rand() * wordsPairs.length);
-        correctWord = wordsPairs[correctIndex];
+    if (state === -1 || warmupCases === 0) {
+        state++;
+    } else {
+        state=1;
+        warmupCases--;
     }
-    seenWords[correctIndex] = true;
+    counting=true;
+    if (wordsPerQuestion == 0 || (state % WORDS_INCREMENT_INTERVAL == 0 && warmupCases === 0)) {
+        wordsPerQuestion += WORDS_INCREMENT;
+    }
+    optionsArray = [];
+    correctWord = getRandomPair();
+
     // select 1 character from the correct word first and second element and then replace it with a random character
     for (let i = 0; i < optionsCount; i++) {
         let option = [...correctWord]
+        option[0] = [...correctWord[0]]
+        // now modity two random chartacters for each word
         let index1 = Math.floor(rand() * option[0].length);
-        let index2 = Math.floor(rand() * option[1].length);
-        option[0] = option[0].slice(0, index1) + String.fromCharCode(Math.floor(rand() * 26) + 97) + option[0].slice(index1 + 1);
-        option[1] = option[1].slice(0, index2) + String.fromCharCode(Math.floor(rand() * 26) + 97) + option[1].slice(index2 + 1);
+        let index2 = Math.floor(rand() * option[0].length);
+        while (index1 == index2) {
+            index2 = Math.floor(rand() * option[0].length);
+        }
+        // change one 
+        option[0][index1] = changeListRandomCharacter(option[0][index1]);
+        option[0][index2] = changeListRandomCharacter(option[0][index2]);
+        console.log(option[0][index1], option[0][index2])
         optionsArray.push(option);
     }
-    console.log(optionsArray)
     // insert correct word at random in the option array
     optionsArray[Math.floor(rand() * optionsArray.length)] = correctWord;
     // choose one at random to be the correct one
@@ -118,15 +154,31 @@ async function onKeyDownfunction(event) {
 };
 
 function parseOption(optionArray, space = false) {
-    let isCamelCase = optionArray[2];
-    if (space) {
-        return optionArray[0] + " " + optionArray[1];
+    // there are n words
+    // optionArray[0] is the list of words
+    // optionArray[1] is whether it is camel case or not
+    let str = "";
+    let first = true;
+    for (const element of optionArray[0]) {
+        if (optionArray[1]) {
+            // make the first word upper case
+            let tmp = element[0].toUpperCase() + element.slice(1);
+            if (first) {
+                first = false;
+                str += element + (space? " ": "");
+                continue;
+            }
+            str += tmp + (space? " ": "");
+        } else {
+            str += element + (space? " ": "-");
+        }
     }
-    if (isCamelCase) {
-        // first character of first word is lowercase and first character of second word is uppercase
-        return optionArray[0][0].toLowerCase() + optionArray[0].slice(1) + optionArray[1][0].toUpperCase() + optionArray[1].slice(1);
-    } 
-    return optionArray[0] + "_" + optionArray[1];
+    // remove last index if optionarray[1] is false and space is false
+    if (!optionArray[1] && !space) {
+        str = str.slice(0, str.length - 1);
+    }
+    
+    return str
 }
 
 function didUserSelectCorrectly(event) {
@@ -146,9 +198,6 @@ function didUserSelectCorrectly(event) {
 function onCorrect() {
     let endTime = new Date();
 
-    if (state < warmupCases) {
-        return;
-    }
     let wrongsArray = [];
     // iterate over wrongs map
     for (let key in wrongs) {
@@ -162,7 +211,8 @@ function onCorrect() {
         timer: endTime - startTime,
         correct_word: parseOption(correctWord),
         correct_kind: correctWord[2],
-        wrongs: wrongsArray
+        wrongs: wrongsArray,
+        wordsCount: wordsPerQuestion,
     });
 
 
