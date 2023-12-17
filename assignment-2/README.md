@@ -2,18 +2,25 @@
 
 ## Assignment 2: camelCase vs kebab-case
 
-## Setup
+### Report
+
+The report is hosted on Google Docs, 
+created following the issued template guidelines for experiments.
+
+https://docs.google.com/document/d/1TWYcJSBBm_dTWRWt2--jIQON1vYvf0uN7O6bk6r4zU4/edit?usp=sharing
+
+### Setup
 
 Clone the repository.
 Python dependencies are handled with [Poetry](#references).
 To immediately create a virtual environment and install dependencies run:
 ```shell
-poetry shell
-poetry install --no-root
+poetry shell  # enters the virtual environment created by poetry
+poetry install --no-root  # install dependencies inside it
 ```
 Then, you can use the Jupiter notebook.
 
-## Sample test case
+### Sample test case
 
 Sample object:
 ```json
@@ -44,7 +51,7 @@ Selection object:
 }
 ```
 
-## References
+### References
 - [iCorsi3 slides](https://www.icorsi.ch/course/view.php?id=16919)
 - [Python Poetry](https://python-poetry.org/docs/)
 - [How to detect outliers in z-score](https://www.machinelearningplus.com/machine-learning/how-to-detect-outliers-with-z-score/)
