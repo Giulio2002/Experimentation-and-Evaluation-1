@@ -1,3 +1,5 @@
 node_modules
 here
 .env
+node_modules/
+.ipynb_checkpoints/
