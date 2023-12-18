@@ -1,7 +1,6 @@
 {
     "description": "Common English words.",
-    "commonWords":
-      [
+    "commonWords": [
         "a",
         "able",
         "about",
@@ -982,5 +981,5 @@
         "yet",
         "you",
         "young"
-      ]
-  }
+    ]
+}
