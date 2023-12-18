@@ -11,10 +11,10 @@
     "scripts": {
         "start": "set NODE_ENV=dev && node server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format:check": "prettier --ignore-path .eslintignore --check .",
-        "format:write": "prettier --ignore-path .eslintignore --write .",
-        "lint:check": "eslint .",
-        "lint:fix": "eslint --fix .",
+        "format:check": "../node_modules/.bin/prettier --ignore-path .eslintignore --check .",
+        "format:write": "../node_modules/.bin/prettier --ignore-path .eslintignore --write .",
+        "lint:check": "../node_modules/.bin/eslint .",
+        "lint:fix": "../node_modules/.bin/eslint --fix .",
         "ci": "yarn run format:check && yarn run lint:check",
         "fix": "yarn run format:write && yarn run lint:fix"
     },
