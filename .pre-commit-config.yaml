@@ -28,5 +28,15 @@ repos:
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.7.1
     hooks:
-      - id: nbqa
+      - id: nbqa-black
+        language_version: python3.10
+      - id: nbqa-check-ast
+        language_version: python3.10
+      - id: nbqa-flake8
+        language_version: python3.10
+      - id: nbqa-isort
+        language_version: python3.10
+      - id: nbqa-mypy
+        language_version: python3.10
+      - id: nbqa-pylint
         language_version: python3.10
