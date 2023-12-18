@@ -7,6 +7,7 @@
         "url": "https://github.com/Giulio2002/Experimentation-and-Evaluation-1.git"
     },
     "main": "server.js",
+    "type": "module",
     "license": "ISC",
     "scripts": {
         "start": "set NODE_ENV=dev && node server.js",
@@ -19,8 +20,8 @@
         "fix": "yarn run format:write && yarn run lint:fix"
     },
     "engines": {
-        "npm": "please-use-yarn",
-        "yarn": ">= 1.22.19"
+        "yarn": ">= 1.22.19",
+        "npm": "please-use-yarn"
     },
     "dependencies": {
         "body-parser": "^1.20.2",
