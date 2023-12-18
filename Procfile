@@ -1,1 +1,1 @@
-web: cd assignment-2/ && node app.js
+web: cd assignment-2/ && node server.js
