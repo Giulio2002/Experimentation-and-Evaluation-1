@@ -28,7 +28,7 @@ Satisfy the [requisites](#requisites) dependencies.
 Run the project with _gradlew_ file in root of repository:
 
 ```shell
-./gradlew :assignment1:run
+./gradlew :app:run
 ```
 
 ### Requisites

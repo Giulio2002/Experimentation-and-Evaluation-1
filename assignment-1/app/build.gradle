@@ -1,0 +1,52 @@
+// plugins for whole project
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'checkstyle'
+}
+
+// default repository for plugins
+repositories {
+    mavenCentral()
+}
+
+// enforce java version to 21
+java {
+    sourceCompatibility = JavaVersion.VERSION_20
+}
+
+// setup junit 5 BOM
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.10.1"))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+}
+
+checkstyle {
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+application {
+    mainClass.set('ch.usi.experimentation.assignment.Main')
+}
+
+jar {
+    archiveBaseName = 'assignment'
+    archiveVersion = '1.0'
+}

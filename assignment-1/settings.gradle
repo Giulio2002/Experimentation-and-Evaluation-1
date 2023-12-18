@@ -1,3 +1,2 @@
-// state name of project and the subproject assignment we want to build and eventually run
 rootProject.name = 'experimentation'
-include 'assignment1'
+include('app')

@@ -1,4 +1,4 @@
-package ch.usi.experimentation.assignment1;
+package ch.usi.experimentation.assignment;
 
 /**
  * Bubble sort implementation class for while needed variant.

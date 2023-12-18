@@ -1,4 +1,4 @@
-package ch.usi.experimentation.assignment1;
+package ch.usi.experimentation.assignment;
 
 
 import java.util.Random;
