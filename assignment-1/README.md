@@ -3,10 +3,11 @@
 ## Assignment 1: The Bubble Algorithm Library
 
 Analyze three sorting algorithms and decide which one is the most
-suitable having as criterion only **performance**: 
-minimum execution time required. 
+suitable having as criterion only **performance**:
+minimum execution time required.
 
 Algorithms:
+
 - _BubbleSortPassPerItem_
 - _BubbleSortUntilNoChange_
 - _BubbleSortWhileNeeded_
@@ -18,13 +19,14 @@ Implementing all the _Sorter_ interface.
 The [assignment 1 report](https://docs.google.com/document/d/1XvRoceLrXU1l0qW0ANj-XlElyYg7VFREm2lR_bghKqo/edit?usp=sharing)
 is publicly available in Google Docs.
 
-### Replicate experiment 
+### Replicate experiment
 
 Clone the repository.
 
 Satisfy the [requisites](#requisites) dependencies.
 
 Run the project with _gradlew_ file in root of repository:
+
 ```shell
 ./gradlew :assignment1:run
 ```
@@ -32,6 +34,7 @@ Run the project with _gradlew_ file in root of repository:
 ### Requisites
 
 Installed [gradle 8.4](https://gradle.org/) and [openjdk 21](https://jdk.java.net/21/) via [sdkman](https://sdkman.io/) .
+
 ```shell
 curl -s "https://get.sdkman.io" | bash
 source "~/.sdkman/bin/sdkman-init.sh"
@@ -46,7 +49,7 @@ template as a reference.
 Multiple subprojects configured from [docs](https://docs.gradle.org/current/userguide/multi_project_builds.html)
 following [template project](https://github.com/jghoman/gradle-subprojects).
 
-Code style consistency enforced with checkstyle plugin following 
+Code style consistency enforced with checkstyle plugin following
 Google Java Style Guide [docs](https://checkstyle.sourceforge.io/google_style.html).
 
 ## Plots

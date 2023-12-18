@@ -15,7 +15,7 @@ def run():
 
     # Create a FacetGrid for customizing the line styles
     g = sns.FacetGrid(df, col="type", row="array", hue="algorithm", palette=palette, aspect=0.6)
-    
+
     # Map the plot type to the FacetGrid
     g = g.map(plt.plot, "size", "time", linestyle="-", lw=1)
 

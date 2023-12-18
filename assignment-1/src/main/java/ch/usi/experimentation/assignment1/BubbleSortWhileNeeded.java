@@ -38,4 +38,3 @@ public final class BubbleSortWhileNeeded<T extends Comparable<T>> implements Sor
 
   }
 }
-
