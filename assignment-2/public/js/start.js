@@ -1,6 +1,6 @@
 // load all the words in ../words.json with fetch
 const selectionWords = 29
-const pauseInSecs = 1
+const pauseInSecs = 3
 const optionsCount = 4
 var state = -1
 
