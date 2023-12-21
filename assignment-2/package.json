@@ -1,13 +1,12 @@
 {
     "name": "ee-assignment2-camelvskebab",
     "version": "1.0.0",
+
     "description": "Experimentation & Evaluation course, assignment 2 about efficiency between camelCase and kebab-case",
     "repository": {
         "type": "git",
         "url": "https://github.com/Giulio2002/Experimentation-and-Evaluation-1.git"
     },
-    "main": "server.js",
-    "type": "module",
     "license": "ISC",
     "scripts": {
         "start": "set NODE_ENV=dev && node server.js",
@@ -18,10 +17,6 @@
         "lint:fix": "../node_modules/.bin/eslint --fix .",
         "ci": "yarn run format:check && yarn run lint:check",
         "fix": "yarn run format:write && yarn run lint:fix"
-    },
-    "engines": {
-        "yarn": ">= 1.22.19",
-        "npm": "please-use-yarn"
     },
     "dependencies": {
         "body-parser": "^1.20.2",

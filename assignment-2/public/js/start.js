@@ -9,6 +9,8 @@ var wrongs = {}
 var startTime = 0
 var questions = []
 
+var startQs = []
+
 let wordsPerQuestion = 0
 
 const WORDS_INCREMENT = 2
@@ -114,6 +116,7 @@ async function onKeyDownfunction(event) {
             }
             displayText.innerHTML =
                 'Thank you for participating in this study. You may now close the tab.'
+            console.log(startQs)
             return
         }
     }
@@ -152,6 +155,7 @@ async function onKeyDownfunction(event) {
     }
     // insert correct word at random in the option array
     optionsArray[Math.floor(rand() * optionsArray.length)] = correctWord
+    startQs.push({options: optionsArray, correct: correctWord})
     // choose one at random to be the correct one
     count = pauseInSecs
     wrongs = {}

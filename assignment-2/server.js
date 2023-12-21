@@ -1,19 +1,25 @@
-import { fileURLToPath } from 'url'
-import express from 'express'
-import path from 'path'
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import dotenv from 'dotenv'
-import mongo from 'mongodb'
+// import express from 'express'
+// import path from 'path'
+// import cors from 'cors'
+// import bodyParser from 'body-parser'
+// import dotenv from 'dotenv'
+// import mongo from 'mongodb'
+var express = require('express')
+var path = require('path')
+var cors = require('cors')
+var bodyParser = require('body-parser')
+var dotenv = require('dotenv')
+var mongo = require('mongodb')
+
 
 const app = express()
+const PORT = 7666
 dotenv.config()
 
 const MongoClient = mongo.MongoClient
 
-const url = `${process.env.MONGODB_URL}:${process.env.MONGODB_PORT}`
-
-MongoClient.connect(url, function (err, db) {
+const url = process.env.MONGO_URL
+MongoClient.connect(process.env.MONGO_URL, function (err, db) {
     if (err) throw err
     const dbo = db.db('mydb')
     dbo.createCollection('surveys', function (err, res) {
@@ -25,7 +31,6 @@ MongoClient.connect(url, function (err, db) {
 
 const metric = []
 // Directory where your static files are located
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const staticDirPath = path.join(__dirname, 'public')
 
 // npm install body-parser --save
@@ -73,11 +78,11 @@ app.post('/metrics', async (req, res) => {
     console.log(result)
 })
 
-app.listen(process.env.EXPRESS_PORT, (error) => {
+app.listen(process.env.PORT, (error) => {
     if (!error) {
         console.log(
             'Server is Successfully Running, and App is listening on port ' +
-                process.env.EXPRESS_PORT
+                process.env.PORT
         )
     } else {
         console.log("Error occurred, server can't start", error)
