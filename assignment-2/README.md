@@ -144,3 +144,4 @@ inferential statistical analysis to prove experiment hypothesis.
 -   [How to detect outliers in z-score](https://www.machinelearningplus.com/machine-learning/how-to-detect-outliers-with-z-score/)
 -   [Mental chronometry](https://en.wikipedia.org/wiki/Mental_chronometry#References)
 -   [Python Seaborn docs](https://seaborn.pydata.org/)
+-   [Inferential Statistical Analysis using Python](https://brainalystacademy.com/inferential-statistics-in-python/)
