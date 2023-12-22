@@ -38,5 +38,10 @@ repos:
         language_version: python3.10
       - id: nbqa-mypy
         language_version: python3.10
+        args:
+          - --ignore-missing-imports
       - id: nbqa-pylint
         language_version: python3.10
+        args:
+          - --disable=C0114
+          - --ignored-modules=numpy,pandas,scipy.stats,seaborn
