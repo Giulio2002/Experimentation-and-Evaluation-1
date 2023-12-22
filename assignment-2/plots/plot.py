@@ -7,8 +7,6 @@ import numpy as np
 with open('../data.json') as f:
     data = json.load(f)
 
-print(data)
-
 cases = {
     '2-words-camel': [],
     '2-words-kebab': [],
@@ -21,35 +19,21 @@ cases = {
 # Iterate over the data (it is an array of objects)
 for d in data:
     questions = d['questions']
-    prevCount = 2
-    kebabSum = 0
-    camelSum = 0
-    camelTot = 0
-    kebabTot = 0
     # iterate over the questions (it is an array of objects)§
     for q in questions:
+        if len(q['wrongs']) > 0 or q['timer'] < 300:
+            continue
         words = q['wordsCount']
         correct_word = q['correct_word']
         case = 'kebab'
         # if correct_word has an even one uppercase letter, then it is camel case
         if any(char.isupper() for char in correct_word):
             case = 'camel'
-            camelSum += q['timer']
-            camelTot += 1
+            cases[f'{words}-words-camel'].append(q['timer'])
         else:
-            kebabSum += q['timer']
-            kebabTot += 1
-        # append the words count to the corresponding case
-        if prevCount != words:
-            cases[f'{prevCount}-words-camel'].append(camelSum / camelTot)
-            cases[f'{prevCount}-words-kebab'].append(kebabSum / kebabTot)
-            prevCount = words
-            kebabSum = 0
-            camelSum = 0
-            kebabTot = 0
-            camelTot = 0
-    cases[f'{prevCount}-words-camel'].append(camelSum / camelTot)
-    cases[f'{prevCount}-words-kebab'].append(kebabSum / kebabTot)
+            cases[f'{words}-words-kebab'].append(q['timer'])
+            
+        
 
 # Now generate box plots for each case, all in one figure, all in the same graph, make the graph wide
 fig, ax = plt.subplots()
@@ -63,3 +47,19 @@ plt.title('Time taken to answer questions')
 plt.grid(True)
 plt.tight_layout()
 plt.savefig('plots.png')
+
+
+statistics = {}
+
+for key, values in cases.items():
+    values_array = np.array(values)
+    statistics[key] = {
+        'min': np.min(values_array),
+        'max': np.max(values_array),
+        '25th percentile': np.percentile(values_array, 25),
+        '50th percentile': np.percentile(values_array, 50), # Median
+        '75th percentile': np.percentile(values_array, 75),
+    }
+
+for key, value in statistics.items():
+    print(key, value)
