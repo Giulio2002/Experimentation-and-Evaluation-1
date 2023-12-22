@@ -12,10 +12,12 @@ pandas = "^2.1.4"
 seaborn = "^0.13.0"
 matplotlib = "^3.8.2"
 numpy = "^1.26.2"
+scipy = "^1.11.4"
 
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.0"
+pandas-stubs = "^2.1.4.231218"
 
 [build-system]
 requires = ["poetry-core"]

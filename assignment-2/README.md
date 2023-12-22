@@ -33,7 +33,12 @@ and it's available at the following link:
 https://evalualuation-assignment2-77d1761f9a41.herokuapp.com/
 
 The tool is a simple web page that allows the user to perform the experiment.
-The user fills the form with:
+A computer device and a keyboard with number row / number pad is required
+to minimize the delay between reaction time and option selection.
+
+### Experiment assessment
+
+Every user candidate fills the form with its personal data:
 
 -   age
 -   use glasses
@@ -41,21 +46,24 @@ The user fills the form with:
 -   role
     -   student
     -   professor
+    -   employee
     -   other
 
 Then, the user can start the experiment:
-a timer is measuring how much time the user takes to complete each question.
+a timer measures in milliseconds the time spent to complete each question.
 
-The user is presented with a word, and a selection of words where
-only one is the correct alternative.
-Wrong selections are registered with its type (camelCase or kebab-case).
+The user is presented with a sentence: white space separated words.
+After a 3 seconds countdown to read it, a selection of options is shown
+where only one is the correct alternative for the sentence in either
+camel case or kebab case variant.
+Wrong selections are registered.
 
 There are 33 questions in the following order:
 
--   3 questions are warm-up questions
--   10 questions are short length
--   10 questions are medium length
--   10 questions are long length
+-   3 warm-up: neglected from analysis
+-   10 cases: 2 words short length, 5 kebab / 5 camel variants
+-   10 cases: 4 words medium length, 4 kebab / 6 camel variants
+-   10 cases: 6 words long length, 4 kebab / 6 camel variants
 
 Sample object:
 
@@ -64,7 +72,7 @@ Sample object:
     "age": 21,
     "use_glasses": true,
     "reading_impairment": false,
-    "role": "profesor",
+    "role": "professor",
     "questions": []
 }
 ```
@@ -74,8 +82,8 @@ Question object:
 ```json
 {
     "timer": 60000,
-    "correct_word": "this word",
-    "correct_kind": "camel",
+    "correct_word": "this-word",
+    "correct_kind": "kebab",
     "wrong_selections": []
 }
 ```
@@ -84,17 +92,19 @@ Selection object:
 
 ```json
 {
-    "word": "thisword",
-    "type": "kebab"
+    "word": "this-world"
 }
 ```
 
 ### Data Analysis
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Poetry](https://img.shields.io/badge/Poetry-%233B82F6.svg?style=for-the-badge&logo=poetry&logoColor=0B3D8D)
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
 ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![SciPy](https://img.shields.io/badge/SciPy-%230C55A5.svg?style=for-the-badge&logo=scipy&logoColor=%white)
 
 ![Python version](https://img.shields.io/badge/python-3.10-blue.svg)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
@@ -108,14 +118,30 @@ Python dependencies are handled with [Poetry](#references).
 To immediately create a virtual environment and install dependencies run:
 
 ```shell
-poetry shell  # enters the virtual environment created by poetry
+poetry shell  # enters the virtual environment created by poetry and echos the virtualenv path
 poetry install --no-root  # install dependencies inside it
 ```
 
-Then, you can use the Jupiter notebook.
+Then, you can use the Jupiter notebook from withing the virtualenv.
+
+If you use Jupiter from IDEs like PyCharm,
+you can use the virtualenv by setting it as the project interpreter.
+In the bottom right corner of the IDE,
+you can select to add a new local interpreter and select the virtualenv created by poetry.
+Usually, location of poetry virtualenvs is `~/.cache/pypoetry/virtualenvs/`.
+
+#### Jupiter Notebook reproducibility
+
+Go to the [jupyter notebook](./display.ipynb) to see the analysis performed:
+it's a step-by-step guide that leads from raw data in json format
+to pandas dataframe, questions clusterization, data filtering, plots and
+inferential statistical analysis to prove experiment hypothesis.
 
 ### References
 
 -   [iCorsi3 slides](https://www.icorsi.ch/course/view.php?id=16919)
 -   [Python Poetry](https://python-poetry.org/docs/)
 -   [How to detect outliers in z-score](https://www.machinelearningplus.com/machine-learning/how-to-detect-outliers-with-z-score/)
+-   [Mental chronometry](https://en.wikipedia.org/wiki/Mental_chronometry#References)
+-   [Python Seaborn docs](https://seaborn.pydata.org/)
+-   [Inferential Statistical Analysis using Python](https://brainalystacademy.com/inferential-statistics-in-python/)
